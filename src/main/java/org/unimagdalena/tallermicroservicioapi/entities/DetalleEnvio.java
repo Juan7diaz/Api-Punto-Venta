@@ -26,4 +26,8 @@ public class DetalleEnvio {
     @Column
     private Integer numeroGuia;
 
+    @OneToOne
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id")
+    private Pedido pedido;
+
 }

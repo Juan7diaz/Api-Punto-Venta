@@ -31,4 +31,7 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private Pago pago;
 
+    @OneToOne(mappedBy = "pedido")
+    private DetalleEnvio detalleEnvio;
+
 }
