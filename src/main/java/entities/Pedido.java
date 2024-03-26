@@ -1,9 +1,12 @@
 package entities;
 
+import utils.EstadoPedido;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.UUID;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,19 +14,18 @@ import java.util.UUID;
 @Getter
 @Entity
 @Builder
-public class Cliente {
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column
-    private String nombre;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaPedido;
 
     @Column
-    private String email;
-
-    @Column
-    private String direccion;
+    @Enumerated(EnumType.STRING)
+    private EstadoPedido status;
 
 }
