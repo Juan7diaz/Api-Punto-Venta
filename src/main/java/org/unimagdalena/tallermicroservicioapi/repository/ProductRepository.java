@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     Optional<Product> findInStock();
 
     // Buscar los productos que no superen un precio y un stock determinado
-    Optional<Product> findByPrecioLessThanAndStockLessThan(Double precio, Integer stock);
+    Optional<Product> findByPriceLessThanAndStockLessThan(Float precio, Integer stock);
 
 
 }
