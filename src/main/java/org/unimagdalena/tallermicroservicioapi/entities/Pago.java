@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.unimagdalena.tallermicroservicioapi.utils.MetodoPago;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,7 +25,7 @@ public class Pago {
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPago;
+    private LocalDateTime fechaPago;
 
     @Column
     @Enumerated(EnumType.STRING)
