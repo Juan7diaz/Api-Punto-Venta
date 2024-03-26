@@ -14,6 +14,7 @@ El sistema consta de las siguientes entidades:
 - **DetalleEnvio**: Representa la información de envío de un pedido.
 
 ## Diagrama relacional
+[![Whats-App-Image-2024-03-26-at-00-33-29.jpg](https://i.postimg.cc/W37CgbkT/Whats-App-Image-2024-03-26-at-00-33-29.jpg)](https://postimg.cc/Q9HfrDmy)
 
 ## Tecnologías utilizadas
 
