@@ -19,5 +19,5 @@ public interface PedidoRepository extends JpaRepository<Pedido, UUID> {
 
     // Recuperar pedidos con sus artículos usando JOIN fetch para evitar el problema N+1, para un cliente específico
     @Query("SELECT p FROM Pedido p JOIN FETCH p.itemsPedido WHERE p.cliente.id = ?1")
-    Optional<Pedido> findByClienteIdWithItemsFetch(Long clienteId);
+    Optional<Pedido> findByClienteIdWithItemsFetch(UUID clienteId);
 }
