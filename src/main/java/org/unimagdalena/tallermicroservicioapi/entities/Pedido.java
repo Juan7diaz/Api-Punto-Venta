@@ -34,4 +34,8 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private DetalleEnvio detalleEnvio;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
 }

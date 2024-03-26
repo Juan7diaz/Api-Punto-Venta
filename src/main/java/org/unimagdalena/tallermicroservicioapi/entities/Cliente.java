@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -25,5 +26,8 @@ public class Cliente {
 
     @Column
     private String direccion;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Pedido> pedidos;
 
 }
