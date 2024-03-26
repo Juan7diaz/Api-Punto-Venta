@@ -31,7 +31,7 @@ public class Pago {
     private MetodoPago metodoPago;
 
     @OneToOne
-    @JoinColumn(name = "pedidoId", referencedColumnName = "id")
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id")
     private Pedido pedido;
 
 }
