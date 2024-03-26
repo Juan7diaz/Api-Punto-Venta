@@ -17,12 +17,11 @@ public class DetalleEnvio {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-
     @Column
     private String direccion;
 
     @Column
-    private String trasnportadora;
+    private String transportadora;
 
     @Column
     private Integer numeroGuia;
