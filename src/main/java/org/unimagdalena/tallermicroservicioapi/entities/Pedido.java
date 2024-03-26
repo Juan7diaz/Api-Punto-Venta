@@ -4,6 +4,7 @@ import org.unimagdalena.tallermicroservicioapi.utils.EstadoPedido;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,7 @@ public class Pedido {
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPedido;
+    private LocalDateTime fechaPedido;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -40,6 +41,6 @@ public class Pedido {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ItemPedido> itemsPedidos;
+    private List<ItemPedido> itemsPedido;
 
 }
