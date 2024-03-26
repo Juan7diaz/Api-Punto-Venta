@@ -1,11 +1,12 @@
-package entities;
+package org.unimagdalena.tallermicroservicioapi.entities;
 
+import org.unimagdalena.tallermicroservicioapi.utils.EstadoPedido;
 import jakarta.persistence.*;
 import lombok.*;
-import utils.MetodoPago;
 
 import java.util.Date;
 import java.util.UUID;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,21 +14,21 @@ import java.util.UUID;
 @Getter
 @Entity
 @Builder
-public class Pago {
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column
-    private Integer totalPago;
-
-    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPago;
+    private Date fechaPedido;
 
     @Column
     @Enumerated(EnumType.STRING)
-    private MetodoPago metodoPago;
+    private EstadoPedido status;
+
+    @OneToOne(mappedBy = "pedido")
+    private Pago pago;
 
 }

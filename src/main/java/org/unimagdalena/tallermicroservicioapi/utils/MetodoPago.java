@@ -1,4 +1,4 @@
-package utils;
+package org.unimagdalena.tallermicroservicioapi.utils;
 
 public enum MetodoPago {
     EFECTIVO,

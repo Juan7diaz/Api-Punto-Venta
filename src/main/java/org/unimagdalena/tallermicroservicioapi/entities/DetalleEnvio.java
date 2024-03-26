@@ -1,4 +1,4 @@
-package entities;
+package org.unimagdalena.tallermicroservicioapi.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,12 +1,10 @@
-package entities;
+package org.unimagdalena.tallermicroservicioapi.entities;
 
-import utils.EstadoPedido;
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
 import java.util.UUID;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,18 +12,16 @@ import java.util.UUID;
 @Getter
 @Entity
 @Builder
-public class Pedido {
+public class ItemPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPedido;
+    private Integer cantidad;
 
     @Column
-    @Enumerated(EnumType.STRING)
-    private EstadoPedido status;
+    private Float precioUnitario;
 
 }
