@@ -24,4 +24,8 @@ public class ItemPedido {
     @Column
     private Float precioUnitario;
 
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
 }
