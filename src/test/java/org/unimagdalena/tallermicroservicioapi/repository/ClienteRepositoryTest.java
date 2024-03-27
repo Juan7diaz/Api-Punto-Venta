@@ -131,4 +131,7 @@ public class ClienteRepositoryTest extends  AbstractIntegrationDBTest{
         assertThat(listaTodoCliente.size()).isEqualTo(3);
     }
 
+
+
+
 }
