@@ -45,3 +45,9 @@ El sistema consta de las siguientes entidades:
 2. Configura una instancia de PostgreSQL y crea una base de datos.
 3. Actualiza las propiedades de conexión a la base de datos en el archivo `application.properties`.
 4. Ejecuta la aplicación utilizando el comando `./gradlew bootRun`.
+
+## Ejecución de los tests
+1. Clonar el repositorio
+2. Navegar dentro del profecto `cd TallerMicroservicioApi`
+3. Debe tener instalador Docker Desktop y corriendolo
+4. Ya puedes ejecutar todos los test con el comando `./gradlew test`
