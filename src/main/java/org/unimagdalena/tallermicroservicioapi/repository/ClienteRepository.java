@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,9 +13,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, UUID> {
     Optional<Cliente> findByEmail(String email);
 
     // Encontrar clientes por dirección
-    Optional<Cliente> findByDireccionContainingIgnoreCase(String direccion);
+    List<Cliente> findByDireccionContainingIgnoreCase(String direccion);
 
     // Encontrar clientes por todos los clientes que comiencen por un nombre
-    Optional<Cliente> findByNombreStartingWithIgnoreCase(String nombre);
+    List<Cliente> findByNombreStartingWithIgnoreCase(String nombre);
 
 }

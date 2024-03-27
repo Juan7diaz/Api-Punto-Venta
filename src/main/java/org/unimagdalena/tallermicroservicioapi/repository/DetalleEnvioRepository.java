@@ -12,7 +12,7 @@ public interface DetalleEnvioRepository extends JpaRepository<DetalleEnvio, UUID
     //Buscar los detalles del envío por pedido Id
     Optional<DetalleEnvio> findByPedidoId(UUID pedidoId);
 
-    //Buscar los detalles de envío para un transportadora
+    //Buscar los detalles de envío para una transportadora
     Optional<DetalleEnvio> findByTransportadora(String transportadora);
 
     //Buscar los detalles de envio por estado
