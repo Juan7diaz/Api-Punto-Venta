@@ -17,6 +17,6 @@ public interface ItemPedidoRepository extends JpaRepository<ItemPedido, UUID> {
 
     //Calcular la suma del total de ventas para un producto, utilice la agregación SUM
     @Query("SELECT SUM(ip.cantidad * ip.precioUnitario) FROM ItemPedido ip WHERE ip.product.id = ?1")
-    Double getTotalVentasByProductoId(UUID productoId);
+    Float getTotalVentasByProductId(UUID productId);
 
 }
