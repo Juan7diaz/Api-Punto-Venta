@@ -26,6 +26,7 @@ public class ProductRepositoryTest extends AbstractIntegrationDBTest {
     Product productoGlobalXiaomi;
     @BeforeEach
     void setUp() {
+        productRepository.deleteAll();
         productoGlobalIphone = Product.builder()
                 .nombre("celular iphone 13 pro")
                 .price(2500000f)
