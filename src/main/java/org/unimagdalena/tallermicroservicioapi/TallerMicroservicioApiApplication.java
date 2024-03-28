@@ -12,7 +12,6 @@ public class TallerMicroservicioApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(TallerMicroservicioApiApplication.class, args);
     }
-
     @GetMapping
     public String prueba(){
         return "Funciona (colocar algo mejor aca)";
