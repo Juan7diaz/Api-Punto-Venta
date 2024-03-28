@@ -139,6 +139,7 @@ public class PagoRepositoryTest extends AbstractIntegrationDBTest {
     }
 
     @Test
+    @DisplayName("[save] dado un nuevo pago, este se debe poder guardar en la base de dato")
     void test_save(){
 
         Pago newPago = Pago.builder()
