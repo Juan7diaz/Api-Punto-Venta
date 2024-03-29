@@ -64,12 +64,12 @@ El sistema consta de las siguientes entidades:
 }
 ```
 
-| Endpoint                                     | Método | Path                            | Variable     | Request Param | Request Body  |
-|----------------------------------------------|--------|---------------------------------|--------------|---------------|---------------|
-| Obtener Cliente por ID                      | GET    | /api/v1/customers/{id}         | id           |               |               |
-| Obtener todos los Clientes                  | GET    | /api/v1/customers              |              |               |               |
-| Obtener Cliente por Email                   | GET    | /api/v1/customers/email/{email}| email        |               |               |
-| Obtener Clientes por Ciudad                 | GET    | /api/v1/customers/city         | cityName     |               |               |
-| Crear Cliente                                | POST   | /api/v1/customers              |              |               | Objeto Cliente|
-| Actualizar Cliente por ID                   | PUT    | /api/v1/customers/{id}         | id           |               | Objeto Cliente|
-| Eliminar Cliente por ID                     | DELETE | /api/v1/customers/{id}         | id           |               |               |
+| Endpoint                       | Método   | Path                              | Variable     | Request Param | Request Body  |
+|--------------------------------|----------|-----------------------------------|--------------|---------------|---------------|
+| Obtener Cliente por ID         | GET      | /api/v1/customers/{id}            | id           |               |               |
+| Obtener todos los Clientes     | GET      | /api/v1/customers                 |              |               |               |
+| Obtener Cliente por Email      | GET      | /api/v1/customers/email/{email}   | email        |               |               |
+| Obtener Clientes por Ciudad    | GET      | /api/v1/customers/city?cityName=  |              | cityName      |               |
+| Crear Cliente                  | POST     | /api/v1/customers                 |              |               | Objeto Cliente|
+| Actualizar Cliente por ID      | PUT      | /api/v1/customers/{id}            | id           |               | Objeto Cliente|
+| Eliminar Cliente por ID        | DELETE   | /api/v1/customers/{id}            | id           |               |               |
