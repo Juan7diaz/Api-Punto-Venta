@@ -56,10 +56,11 @@ El sistema consta de las siguientes entidades:
 
 ### ClienteController
 ```json
-ObjetoCliente =  {
+//Objeto cliente:
+{
 "nombre": "Juan",
 "email": "cliente1@example.com",
-"direccion": "Calle 123, Ciudad A",
+"direccion": "Calle 123, Ciudad A"
 }
 ```
 
