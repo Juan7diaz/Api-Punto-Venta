@@ -6,7 +6,7 @@ import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ClienteMapper {
 
     Cliente clienteDtoToClienteEntity(ClienteDto clienteDto);
@@ -14,7 +14,7 @@ public interface ClienteMapper {
     ClienteDto clienteEntityToClienteDto(Cliente cliente);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "pedidos", ignore = true)
+    @Mapping(target = "pedidos", expression = "java(new ArrayList<>())")
     Cliente clienteToSaveDtoToClienteEntity(ClienteToSaveDto clienteToSaveDto);
 
     ClienteToSaveDto clienteEntityToClienteToSaveDto(Cliente cliente);
