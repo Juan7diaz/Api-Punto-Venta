@@ -55,7 +55,7 @@ El sistema consta de las siguientes entidades:
 ## API
 
 ### ClienteController
-```json
+```js
 //Objeto cliente:
 {
 "nombre": "Juan",
@@ -73,3 +73,25 @@ El sistema consta de las siguientes entidades:
 | Crear Cliente                  | POST     | /api/v1/customers                 |              |               | Objeto Cliente|
 | Actualizar Cliente por ID      | PUT      | /api/v1/customers/{id}            | id           |               | Objeto Cliente|
 | Eliminar Cliente por ID        | DELETE   | /api/v1/customers/{id}            | id           |               |               |
+
+
+### ProductoController
+
+```js
+//Objeto Producto
+{
+    "nombre": "Computadora",
+    "price": 1555,
+    "stock": 23
+}
+```
+
+| Endpoint                          | Método | Path                            | Variable | Request Param | Request Body   |
+|-----------------------------------|--------|---------------------------------|----------|---------------|----------------|
+| Obtener Producto por ID           | GET    | /api/v1/products/{id}           | id       |               |                |
+| Buscar Productos por Término      | GET    | /api/v1/products/search         |          | searchTerm    |                |
+| Obtener Productos en Stock        | GET    | /api/v1/products/instock        |          |               |                |
+| Obtener todos los Productos      | GET    | /api/v1/products                |          |               |                |
+| Crear Producto                    | POST   | /api/v1/products                |          |               | Objeto Producto|
+| Actualizar Producto por ID       | PUT    | /api/v1/products/{id}           | id       |               | Objeto Producto|
+| Eliminar Producto por ID         | DELETE | /api/v1/products/{id}           | id       |               |                |
