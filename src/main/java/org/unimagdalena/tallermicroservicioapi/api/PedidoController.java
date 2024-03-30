@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
 import org.unimagdalena.tallermicroservicioapi.services.pedido.PedidoServices;
 import org.unimagdalena.tallermicroservicioapi.utils.EstadoPedido;
@@ -25,9 +26,9 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoDto> getPedidoById(@PathVariable UUID id){
+    public ResponseEntity<PedidoToShowDto> getPedidoById(@PathVariable UUID id){
         try{
-            PedidoDto res = pedidoServices.findPedidoById(id);
+            PedidoToShowDto res = pedidoServices.findPedidoById(id);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -35,9 +36,9 @@ public class PedidoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PedidoDto>> getAllPedido(){
+    public ResponseEntity<List<PedidoToShowDto>> getAllPedido(){
         try{
-            List<PedidoDto> res = pedidoServices.findAllPedidos();
+            List<PedidoToShowDto> res = pedidoServices.findAllPedidos();
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -45,10 +46,10 @@ public class PedidoController {
     }
 
     @GetMapping("/customer/{customerId}")
-    public ResponseEntity<List<PedidoDto>> getPedidoByClienteIdAndStatus(@PathVariable UUID customerId, @RequestParam("status") String status){
+    public ResponseEntity<List<PedidoToShowDto>> getPedidoByClienteIdAndStatus(@PathVariable UUID customerId, @RequestParam("status") String status){
         try{
             EstadoPedido statusPedido = EstadoPedido.fromString(status.toUpperCase());
-            List<PedidoDto> res = pedidoServices.findPedidosByClienteIdAndStatus(customerId, statusPedido);
+            List<PedidoToShowDto> res = pedidoServices.findPedidosByClienteIdAndStatus(customerId, statusPedido);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -56,9 +57,9 @@ public class PedidoController {
     }
 
     @GetMapping("/date-range")
-    public ResponseEntity<List<PedidoDto>> getPedidoBetweenDates(@RequestParam("startDate") LocalDateTime startDate, @RequestParam("endDate") LocalDateTime endDate){
+    public ResponseEntity<List<PedidoToShowDto>> getPedidoBetweenDates(@RequestParam("startDate") LocalDateTime startDate, @RequestParam("endDate") LocalDateTime endDate){
         try{
-            List<PedidoDto> res = pedidoServices.findPedidosByFechaPedidoBetween(startDate, endDate);
+            List<PedidoToShowDto> res = pedidoServices.findPedidosByFechaPedidoBetween(startDate, endDate);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -66,20 +67,19 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDto> postPedido(@RequestBody PedidoToSaveDto pedido){
+    public ResponseEntity<PedidoToShowDto> postPedido(@RequestBody PedidoToSaveDto pedido){
         try{
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-            PedidoDto res = pedidoServices.savePedido(pedido);
+            PedidoToShowDto res = pedidoServices.savePedido(pedido);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<PedidoDto> putPedido(@PathVariable UUID id, @RequestBody PedidoToSaveDto pedido){
+    @PutMapping("/{id}")
+    public ResponseEntity<PedidoToShowDto> putPedido(@PathVariable UUID id, @RequestBody PedidoToSaveDto pedido){
         try{
-            PedidoDto res = pedidoServices.updatePedidoById(id, pedido);
+            PedidoToShowDto res = pedidoServices.updatePedidoById(id, pedido);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();

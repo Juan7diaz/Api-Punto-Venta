@@ -2,8 +2,10 @@ package org.unimagdalena.tallermicroservicioapi.services.pedido;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 import org.unimagdalena.tallermicroservicioapi.entities.Pedido;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
@@ -35,8 +37,8 @@ public class PedidoServicesImpl implements PedidoServices{
     }
 
     @Override
-    public PedidoDto savePedido(PedidoToSaveDto pedidoToSave) {
-        System.out.println("2+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+    public PedidoToShowDto savePedido(PedidoToSaveDto pedidoToSave) {
+
         Pedido pedidoToSaveEntity = pedidoMapper.pedidoToSaveDtoToPedido(pedidoToSave);
 
         Optional<Cliente> cliente = clienteRepository.findById(pedidoToSave.cliente().id());
@@ -45,13 +47,18 @@ public class PedidoServicesImpl implements PedidoServices{
             throw new NotFoundException("Cliente no encontrado, primero debe existir el cliente");
 
         pedidoToSaveEntity.setCliente(cliente.get());
+
+        System.out.println(pedidoToSaveEntity);
+
         Pedido pedidoGuardado = pedidoRepository.save(pedidoToSaveEntity);
 
-        return pedidoMapper.pedidoEntityToPedidoDto(pedidoGuardado);
+        System.out.println(pedidoGuardado);;
+
+        return pedidoMapper.pedidoEntityToPedidoToShow(pedidoGuardado);
     }
 
     @Override
-    public PedidoDto updatePedidoById(UUID id, PedidoToSaveDto pedidoToUpdate) {
+    public PedidoToShowDto updatePedidoById(UUID id, PedidoToSaveDto pedidoToUpdate) {
 
         Optional<Pedido> pedidoExistente = pedidoRepository.findById(id);
 
@@ -66,32 +73,32 @@ public class PedidoServicesImpl implements PedidoServices{
 
         Pedido pedidoActualizado = pedidoRepository.save(pedidoExistente.get());
 
-        return pedidoMapper.pedidoEntityToPedidoDto(pedidoActualizado);
+        return pedidoMapper.pedidoEntityToPedidoToShow(pedidoActualizado);
     }
 
     @Override
-    public PedidoDto findPedidoById(UUID id) {
+    public PedidoToShowDto findPedidoById(UUID id) {
 
         Optional<Pedido> pedido = pedidoRepository.findById(id);
 
         if(pedido.isEmpty())
             throw new NotFoundException("Pedido con ID " + id + " no encontrado");
 
-        return pedidoMapper.pedidoEntityToPedidoDto(pedido.get());
+        return pedidoMapper.pedidoEntityToPedidoToShow(pedido.get());
     }
 
     @Override
-    public List<PedidoDto> findAllPedidos() {
+    public List<PedidoToShowDto> findAllPedidos() {
 
         List<Pedido> pedidos = pedidoRepository.findAll();
 
         if(pedidos.isEmpty())
             throw new NotFoundException("No se ha encontrado pedidos");
 
-        List<PedidoDto> allPedidos = new ArrayList<>();
+        List<PedidoToShowDto> allPedidos = new ArrayList<>();
 
         pedidos.forEach( pedido -> {
-            PedidoDto p = pedidoMapper.pedidoEntityToPedidoDto(pedido);
+            PedidoToShowDto p = pedidoMapper.pedidoEntityToPedidoToShow(pedido);
             allPedidos.add(p);
         });
 
@@ -109,16 +116,16 @@ public class PedidoServicesImpl implements PedidoServices{
     }
 
     @Override
-    public List<PedidoDto> findPedidosByFechaPedidoBetween(LocalDateTime startDate, LocalDateTime endDate) {
+    public List<PedidoToShowDto> findPedidosByFechaPedidoBetween(LocalDateTime startDate, LocalDateTime endDate) {
         List<Pedido> pedidosMatch = pedidoRepository.findByFechaPedidoBetween(startDate, endDate);
 
         if(pedidosMatch.isEmpty())
             throw new NotFoundException("No se encontró pedidos dentro esas fechas");
 
-        List<PedidoDto> pedidosARegresar = new ArrayList<>();
+        List<PedidoToShowDto> pedidosARegresar = new ArrayList<>();
 
         pedidosMatch.forEach( pedido -> {
-            PedidoDto pedidoMappeado = pedidoMapper.pedidoEntityToPedidoDto(pedido);
+            PedidoToShowDto pedidoMappeado = pedidoMapper.pedidoEntityToPedidoToShow(pedido);
             pedidosARegresar.add(pedidoMappeado);
         });
 
@@ -126,17 +133,17 @@ public class PedidoServicesImpl implements PedidoServices{
     }
 
     @Override
-    public List<PedidoDto> findPedidosByClienteIdAndStatus(UUID cliente_id, EstadoPedido status) {
+    public List<PedidoToShowDto> findPedidosByClienteIdAndStatus(UUID cliente_id, EstadoPedido status) {
 
         List<Pedido> pedidosMatch = pedidoRepository.findByClienteIdAndStatus(cliente_id, status);
 
         if(pedidosMatch.isEmpty())
             throw new NotFoundException("No se encontró ningún pedido con ese id y ese status");
 
-        List<PedidoDto> pedidosARegresar = new ArrayList<>();
+        List<PedidoToShowDto> pedidosARegresar = new ArrayList<>();
 
         pedidosMatch.forEach( pedido -> {
-            PedidoDto pedidoMappeado = pedidoMapper.pedidoEntityToPedidoDto(pedido);
+            PedidoToShowDto pedidoMappeado = pedidoMapper.pedidoEntityToPedidoToShow(pedido);
             pedidosARegresar.add(pedidoMappeado);
         });
 
@@ -145,17 +152,17 @@ public class PedidoServicesImpl implements PedidoServices{
     }
 
     @Override
-    public List<PedidoDto> findPedidosByClienteIdWithItemsFetch(UUID cliente_id) {
+    public List<PedidoToShowDto> findPedidosByClienteIdWithItemsFetch(UUID cliente_id) {
 
         List<Pedido> pedidosMatch = pedidoRepository.findByClienteIdWithItemsFetch(cliente_id);
 
         if(pedidosMatch.isEmpty())
             throw new NotFoundException("No se encontró ningún pedido que haga match");
 
-        List<PedidoDto> pedidosARegresar = new ArrayList<>();
+        List<PedidoToShowDto> pedidosARegresar = new ArrayList<>();
 
         pedidosMatch.forEach( pedido -> {
-            PedidoDto pedidoMappeado = pedidoMapper.pedidoEntityToPedidoDto(pedido);
+            PedidoToShowDto pedidoMappeado = pedidoMapper.pedidoEntityToPedidoToShow(pedido);
             pedidosARegresar.add(pedidoMappeado);
         });
 

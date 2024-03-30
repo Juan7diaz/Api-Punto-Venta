@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
 import org.unimagdalena.tallermicroservicioapi.services.cliente.ClienteServices;
 
@@ -23,9 +24,9 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDto> getClienteById(@PathVariable UUID id){
+    public ResponseEntity<ClienteToShowDto> getClienteById(@PathVariable UUID id){
         try {
-            ClienteDto res = clienteServices.findClienteById(id);
+            ClienteToShowDto res = clienteServices.findClienteById(id);
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -33,9 +34,9 @@ public class ClienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ClienteDto>> getAllCliente(){
+    public ResponseEntity<List<ClienteToShowDto>> getAllCliente(){
         try {
-            List<ClienteDto> res = clienteServices.findAllCliente();
+            List<ClienteToShowDto> res = clienteServices.findAllCliente();
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -43,9 +44,9 @@ public class ClienteController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<ClienteDto> getClienteByEmail(@PathVariable String email){
+    public ResponseEntity<ClienteToShowDto> getClienteByEmail(@PathVariable String email){
         try {
-            ClienteDto res = clienteServices.findClienteByEmail(email);
+            ClienteToShowDto res = clienteServices.findClienteByEmail(email);
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -53,9 +54,9 @@ public class ClienteController {
     }
 
     @GetMapping("/city")
-    public ResponseEntity<List<ClienteDto>> getClientesByCityName(@RequestParam("cityName") String address){
+    public ResponseEntity<List<ClienteToShowDto>> getClientesByCityName(@RequestParam("cityName") String address){
         try {
-            List<ClienteDto> res = clienteServices.findClienteByDireccionContainingIgnoreCase(address);
+            List<ClienteToShowDto> res = clienteServices.findClienteByDireccionContainingIgnoreCase(address);
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -63,15 +64,15 @@ public class ClienteController {
     }
 
     @PostMapping()
-    public ResponseEntity<ClienteDto> postCliente(@RequestBody ClienteToSaveDto cliente){
-        ClienteDto res = clienteServices.SaveCliente(cliente);
+    public ResponseEntity<ClienteToShowDto> postCliente(@RequestBody ClienteToSaveDto cliente){
+        ClienteToShowDto res = clienteServices.SaveCliente(cliente);
         return ResponseEntity.ok().body(res);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClienteDto> putCliente(@PathVariable UUID id, @RequestBody ClienteToSaveDto cliente){
+    public ResponseEntity<ClienteToShowDto> putCliente(@PathVariable UUID id, @RequestBody ClienteToSaveDto cliente){
         try{
-            ClienteDto res = clienteServices.updateClienteById(id, cliente);
+            ClienteToShowDto res = clienteServices.updateClienteById(id, cliente);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();

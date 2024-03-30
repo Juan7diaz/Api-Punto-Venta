@@ -5,6 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Product;
 
 @Mapper(componentModel = "spring")
@@ -19,5 +20,10 @@ public interface ProductMapper {
     Product productToSaveDtoToProductEntity(ProductToSaveDto productToSaveDto);
 
     ProductToSaveDto productEntityToProductToSaveDto(Product product);
+
+    @Mapping(target = "itemsPedidos", ignore = true)
+    Product productToShowDtoToProductEntity(ProductToShowDto productToShowDto);
+
+    ProductToShowDto productEntityToProductToShowDto(Product product);
 
 }

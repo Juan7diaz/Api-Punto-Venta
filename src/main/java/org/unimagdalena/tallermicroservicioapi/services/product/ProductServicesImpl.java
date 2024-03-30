@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.services.product;
 import org.springframework.stereotype.Service;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Product;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
 import org.unimagdalena.tallermicroservicioapi.mappers.ProductMapper;
@@ -25,17 +26,17 @@ public class ProductServicesImpl implements ProductServices{
     }
 
     @Override
-    public List<ProductDto> findAllProducts() {
+    public List<ProductToShowDto> findAllProducts() {
 
         List<Product> products = productRepository.findAll();
 
         if (products.isEmpty())
             throw new NotFoundException("No hay productos registrado");
 
-        List<ProductDto> productosADevolver = new ArrayList<>();
+        List<ProductToShowDto> productosADevolver = new ArrayList<>();
 
         products.forEach( product -> {
-            ProductDto p = productMapper.productEntityToProductDto(product);
+            ProductToShowDto p = productMapper.productEntityToProductToShowDto(product);
             productosADevolver.add(p);
         });
 
@@ -43,26 +44,26 @@ public class ProductServicesImpl implements ProductServices{
     }
 
     @Override
-    public ProductDto findProductById(UUID id) {
+    public ProductToShowDto findProductById(UUID id) {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty())
             throw new NotFoundException("Producto con ID " + id + " no encontrado");
 
-        return productMapper.productEntityToProductDto(product.get());
+        return productMapper.productEntityToProductToShowDto(product.get());
     }
 
     @Override
-    public List<ProductDto> findProductByNombre(String nombre) {
+    public List<ProductToShowDto> findProductByNombre(String nombre) {
         List<Product> productMatch = productRepository.findByNombreContainingIgnoreCase(nombre);
 
         if (productMatch.isEmpty())
             throw new NotFoundException("No se encontró productos que contengan " + nombre);
 
-        List<ProductDto> productosARegresar = new ArrayList<>();
+        List<ProductToShowDto> productosARegresar = new ArrayList<>();
 
         productMatch.forEach(product -> {
-            ProductDto productMappeado = productMapper.productEntityToProductDto(product);
+            ProductToShowDto productMappeado = productMapper.productEntityToProductToShowDto(product);
             productosARegresar.add(productMappeado);
         });
 
@@ -70,16 +71,16 @@ public class ProductServicesImpl implements ProductServices{
     }
 
     @Override
-    public List<ProductDto> findProductInStock() {
+    public List<ProductToShowDto> findProductInStock() {
         List<Product> productosEnStock = productRepository.findInStock();
 
         if (productosEnStock.isEmpty())
             throw new NotFoundException("No hay productos en stock");
 
-        List<ProductDto> productosARegresar = new ArrayList<>();
+        List<ProductToShowDto> productosARegresar = new ArrayList<>();
 
         productosEnStock.forEach(product -> {
-            ProductDto productMappeado = productMapper.productEntityToProductDto(product);
+            ProductToShowDto productMappeado = productMapper.productEntityToProductToShowDto(product);
             productosARegresar.add(productMappeado);
         });
 
@@ -87,14 +88,14 @@ public class ProductServicesImpl implements ProductServices{
     }
 
     @Override
-    public ProductDto saveProduct(ProductToSaveDto product) {
+    public ProductToShowDto saveProduct(ProductToSaveDto product) {
         Product productoAGuardar = productMapper.productToSaveDtoToProductEntity(product);
         Product productoGuardado = productRepository.save(productoAGuardar);
-        return productMapper.productEntityToProductDto(productoGuardado);
+        return productMapper.productEntityToProductToShowDto(productoGuardado);
     }
 
     @Override
-    public ProductDto updateProductById(UUID id, ProductToSaveDto product) {
+    public ProductToShowDto updateProductById(UUID id, ProductToSaveDto product) {
         Optional<Product> productConsultado = productRepository.findById(id);
 
         if (productConsultado.isEmpty())
@@ -108,7 +109,7 @@ public class ProductServicesImpl implements ProductServices{
 
         Product productActualizado = productRepository.save(pr);
 
-        return productMapper.productEntityToProductDto(productActualizado);
+        return productMapper.productEntityToProductToShowDto(productActualizado);
     }
 
     @Override

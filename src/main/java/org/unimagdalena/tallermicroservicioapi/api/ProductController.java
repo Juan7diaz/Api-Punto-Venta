@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
 import org.unimagdalena.tallermicroservicioapi.services.product.ProductServices;
 
@@ -23,9 +24,9 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable UUID id) {
+    public ResponseEntity<ProductToShowDto> getProductById(@PathVariable UUID id) {
         try{
-            ProductDto res = productServices.findProductById(id);
+            ProductToShowDto res = productServices.findProductById(id);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -33,9 +34,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDto>> getAllProduct() {
+    public ResponseEntity<List<ProductToShowDto>> getAllProduct() {
         try{
-            List<ProductDto> res = productServices.findAllProducts();
+            List<ProductToShowDto> res = productServices.findAllProducts();
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -43,9 +44,9 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<ProductDto>> getProductByNombre(@RequestParam String searchTerm) {
+    public ResponseEntity<List<ProductToShowDto>> getProductByNombre(@RequestParam String searchTerm) {
         try{
-            List<ProductDto> res = productServices.findProductByNombre(searchTerm);
+            List<ProductToShowDto> res = productServices.findProductByNombre(searchTerm);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -53,9 +54,9 @@ public class ProductController {
     }
 
     @GetMapping("/instock")
-    public ResponseEntity<List<ProductDto>> getProductsInStock() {
+    public ResponseEntity<List<ProductToShowDto>> getProductsInStock() {
         try{
-            List<ProductDto> res = productServices.findProductInStock();
+            List<ProductToShowDto> res = productServices.findProductInStock();
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -63,9 +64,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> saveProduct(@RequestBody ProductToSaveDto product) {
+    public ResponseEntity<ProductToShowDto> saveProduct(@RequestBody ProductToSaveDto product) {
         try {
-            ProductDto res = productServices.saveProduct(product);
+            ProductToShowDto res = productServices.saveProduct(product);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -73,9 +74,9 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable UUID id, @RequestBody ProductToSaveDto product) {
+    public ResponseEntity<ProductToShowDto> updateProduct(@PathVariable UUID id, @RequestBody ProductToSaveDto product) {
         try{
-            ProductDto updatedProduct = productServices.updateProductById(id, product);
+            ProductToShowDto updatedProduct = productServices.updateProductById(id, product);
             return ResponseEntity.ok(updatedProduct);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
 import org.unimagdalena.tallermicroservicioapi.mappers.ClienteMapper;
@@ -27,14 +28,14 @@ public class ClienteServiceImpl implements ClienteServices {
     }
 
     @Override
-    public ClienteDto SaveCliente(ClienteToSaveDto cliente) {
+    public ClienteToShowDto SaveCliente(ClienteToSaveDto cliente) {
         Cliente clienteToSave = clienteMapper.clienteToSaveDtoToClienteEntity(cliente);
         Cliente clienteGuardado = clienteRepository.save(clienteToSave);
-        return clienteMapper.clienteEntityToClienteDto(clienteGuardado);
+        return clienteMapper.clienteEntityToclienteToShowDto(clienteGuardado);
     }
 
     @Override
-    public ClienteDto updateClienteById(UUID id, ClienteToSaveDto cliente) {
+    public ClienteToShowDto updateClienteById(UUID id, ClienteToSaveDto cliente) {
         Optional<Cliente> clienteConsultado = clienteRepository.findById(id);
 
         if(clienteConsultado.isEmpty())
@@ -48,21 +49,21 @@ public class ClienteServiceImpl implements ClienteServices {
 
         Cliente clienteActualizado = clienteRepository.save(cl);
 
-        return clienteMapper.clienteEntityToClienteDto(clienteActualizado);
+        return clienteMapper.clienteEntityToclienteToShowDto(clienteActualizado);
     }
 
     @Override
-    public List<ClienteDto> findAllCliente() {
+    public List<ClienteToShowDto> findAllCliente() {
 
         List<Cliente> clientes = clienteRepository.findAll();
 
         if(clientes.isEmpty())
             throw new NotFoundException("No se ha encontrado cliente");
 
-        List<ClienteDto> allCliente =  new ArrayList<>();
+        List<ClienteToShowDto> allCliente =  new ArrayList<>();
 
         clientes.forEach( cliente -> {
-            ClienteDto c = clienteMapper.clienteEntityToClienteDto(cliente);
+            ClienteToShowDto c = clienteMapper.clienteEntityToclienteToShowDto(cliente);
             allCliente.add(c);
         });
 
@@ -70,14 +71,14 @@ public class ClienteServiceImpl implements ClienteServices {
     }
 
     @Override
-    public ClienteDto findClienteById(UUID id) {
+    public ClienteToShowDto findClienteById(UUID id) {
 
         Optional<Cliente> cliente = clienteRepository.findById(id);
 
         if(cliente.isEmpty())
             throw new NotFoundException("Cliente con ID " + id + " no encontrado");
 
-        return clienteMapper.clienteEntityToClienteDto(cliente.get());
+        return clienteMapper.clienteEntityToclienteToShowDto(cliente.get());
     }
 
     @Override
@@ -91,28 +92,28 @@ public class ClienteServiceImpl implements ClienteServices {
     }
 
     @Override
-    public ClienteDto findClienteByEmail(String email) {
+    public ClienteToShowDto findClienteByEmail(String email) {
 
         Optional<Cliente> clienteMatch = clienteRepository.findByEmail(email);
 
         if(clienteMatch.isEmpty())
             throw new NotFoundException("No se encontró cliente asociado al email");
 
-        return clienteMapper.clienteEntityToClienteDto(clienteMatch.get());
+        return clienteMapper.clienteEntityToclienteToShowDto(clienteMatch.get());
     }
 
     @Override
-    public List<ClienteDto> findClienteByDireccionContainingIgnoreCase(String direccion) {
+    public List<ClienteToShowDto> findClienteByDireccionContainingIgnoreCase(String direccion) {
 
         List<Cliente> clienteMatch = clienteRepository.findByDireccionContainingIgnoreCase(direccion);
 
         if(clienteMatch.isEmpty())
             throw new NotFoundException("No se encontró direcciones que hagan match con "+ direccion);
 
-        List<ClienteDto> clienteARegresar =  new ArrayList<>();
+        List<ClienteToShowDto> clienteARegresar =  new ArrayList<>();
 
         clienteMatch.forEach( cliente -> {
-            ClienteDto clienteMappeado = clienteMapper.clienteEntityToClienteDto(cliente);
+            ClienteToShowDto clienteMappeado = clienteMapper.clienteEntityToclienteToShowDto(cliente);
             clienteARegresar.add(clienteMappeado);
         });
 
@@ -120,16 +121,16 @@ public class ClienteServiceImpl implements ClienteServices {
     }
 
     @Override
-    public List<ClienteDto> findClienteByNombreStartingWithIgnoreCase(String nombre) {
+    public List<ClienteToShowDto> findClienteByNombreStartingWithIgnoreCase(String nombre) {
         List<Cliente> clienteMatch = clienteRepository.findByNombreStartingWithIgnoreCase(nombre);
 
         if(clienteMatch.isEmpty())
             throw new NotFoundException("No se encontró cliente que inicie con " + nombre);
 
-        List<ClienteDto> clienteARegresar =  new ArrayList<>();
+        List<ClienteToShowDto> clienteARegresar =  new ArrayList<>();
 
         clienteMatch.forEach( cliente -> {
-            ClienteDto clienteMappeado = clienteMapper.clienteEntityToClienteDto(cliente);
+            ClienteToShowDto clienteMappeado = clienteMapper.clienteEntityToclienteToShowDto(cliente);
             clienteARegresar.add(clienteMappeado);
         });
 
