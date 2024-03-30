@@ -68,6 +68,7 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<PedidoDto> postPedido(@RequestBody PedidoToSaveDto pedido){
         try{
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
             PedidoDto res = pedidoServices.savePedido(pedido);
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){

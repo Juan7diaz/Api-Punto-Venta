@@ -7,6 +7,7 @@ import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 import org.unimagdalena.tallermicroservicioapi.entities.Pedido;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
+import org.unimagdalena.tallermicroservicioapi.mappers.DetalleEnvioMapper;
 import org.unimagdalena.tallermicroservicioapi.mappers.PedidoMapper;
 import org.unimagdalena.tallermicroservicioapi.repository.ClienteRepository;
 import org.unimagdalena.tallermicroservicioapi.repository.PedidoRepository;
@@ -27,35 +28,43 @@ public class PedidoServicesImpl implements PedidoServices{
     ClienteRepository clienteRepository;
 
     @Autowired
-    public PedidoServicesImpl(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper, ClienteRepository clienteRepository){
+    public PedidoServicesImpl(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper, ClienteRepository clienteRepository) {
         this.pedidoMapper = pedidoMapper;
         this.pedidoRepository = pedidoRepository;
         this.clienteRepository = clienteRepository;
     }
 
     @Override
-    public PedidoDto savePedido(PedidoToSaveDto pedido) {
-        Pedido pedidoToSave = pedidoMapper.pedidoToSaveDtoToPedido(pedido);
-        Pedido pedidoGuardado = pedidoRepository.save(pedidoToSave);
+    public PedidoDto savePedido(PedidoToSaveDto pedidoToSave) {
+        System.out.println("2+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+        Pedido pedidoToSaveEntity = pedidoMapper.pedidoToSaveDtoToPedido(pedidoToSave);
+
+        Optional<Cliente> cliente = clienteRepository.findById(pedidoToSave.cliente().id());
+
+        if(cliente.isEmpty())
+            throw new NotFoundException("Cliente no encontrado, primero debe existir el cliente");
+
+        pedidoToSaveEntity.setCliente(cliente.get());
+        Pedido pedidoGuardado = pedidoRepository.save(pedidoToSaveEntity);
+
         return pedidoMapper.pedidoEntityToPedidoDto(pedidoGuardado);
     }
 
     @Override
-    public PedidoDto updatePedidoById(UUID id, PedidoToSaveDto pedido) {
-        Optional<Pedido> pedidoConsultado = pedidoRepository.findById(id);
+    public PedidoDto updatePedidoById(UUID id, PedidoToSaveDto pedidoToUpdate) {
 
-        if(pedidoConsultado.isEmpty())
-            throw new NotFoundException("Cliente con ID " + id + " no encontrado");
+        Optional<Pedido> pedidoExistente = pedidoRepository.findById(id);
 
-        Pedido pd = pedidoConsultado.get();
+        if(pedidoExistente.isEmpty())
+            throw new NotFoundException("Pedido no encontrado");
 
-        if(pedido.fechaPedido() != null) pd.setFechaPedido(pedido.fechaPedido());
-        if(pedido.status()!= null) pd.setStatus(pedido.status());
+        if (pedidoToUpdate.fechaPedido() != null)
+            pedidoExistente.get().setFechaPedido(pedidoToUpdate.fechaPedido());
 
-        Optional<Cliente> clienteEncontrado = clienteRepository.findById(pedido.cliente().id());
-        clienteEncontrado.ifPresent(pd::setCliente);
+        if (pedidoToUpdate.status() != null)
+            pedidoExistente.get().setStatus(pedidoToUpdate.status());
 
-        Pedido pedidoActualizado = pedidoRepository.save(pd);
+        Pedido pedidoActualizado = pedidoRepository.save(pedidoExistente.get());
 
         return pedidoMapper.pedidoEntityToPedidoDto(pedidoActualizado);
     }

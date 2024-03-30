@@ -2,7 +2,6 @@ package org.unimagdalena.tallermicroservicioapi.services.pedido;
 
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToSaveDto;
-import org.unimagdalena.tallermicroservicioapi.entities.Pedido;
 import org.unimagdalena.tallermicroservicioapi.utils.EstadoPedido;
 
 import java.time.LocalDateTime;

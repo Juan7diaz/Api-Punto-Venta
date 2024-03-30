@@ -6,9 +6,8 @@ import org.unimagdalena.tallermicroservicioapi.dto.detalleEnvio.DetalleEnvioDto;
 import org.unimagdalena.tallermicroservicioapi.dto.detalleEnvio.DetalleEnvioToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.entities.DetalleEnvio;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface DetalleEnvioMapper {
-
 
     DetalleEnvio detalleEnvioDtoToDetalleEnvioEntity(DetalleEnvioDto detalleEnvioDto);
 
