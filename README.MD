@@ -53,6 +53,7 @@ El sistema consta de las siguientes entidades:
 4. Ya puedes ejecutar todos los test con el comando `./gradlew test`
 
 ## API
+Puedes consultar como usar la api con la documentación de postman 👉 [Aqui](https://documenter.getpostman.com/view/15834105/2sA35G3hSp#50dd6757-03c7-42a0-8fd6-1d5cb9155b58) 👈
 
 ### ClienteController
 ```js
@@ -95,3 +96,55 @@ El sistema consta de las siguientes entidades:
 | Crear Producto                    | POST   | /api/v1/products                |          |               | Objeto Producto|
 | Actualizar Producto por ID       | PUT    | /api/v1/products/{id}           | id       |               | Objeto Producto|
 | Eliminar Producto por ID         | DELETE | /api/v1/products/{id}           | id       |               |                |
+
+
+### PedidoController
+
+```js
+//Objeto Pedido
+{
+  "fechaPedido": "2023-05-15T10:30:00",
+  "status": "PENDIENTE",
+  "cliente": {
+    "id": "58d60d2f-57d1-4b61-a4fe-455845d4f501" 
+    }
+}
+```
+
+
+| Endpoint                                   | Método | Path                                         | Variable | Request Param | Request Body  |
+|--------------------------------------------|--------|----------------------------------------------|----------|---------------|---------------|
+| Obtener Pedido por ID                      | GET    | /api/v1/orders/{id}                          | id       |               |               |
+| Obtener todos los Pedidos                  | GET    | /api/v1/orders                               |          |               |               |
+| Obtener Pedidos por ID de Cliente y Status | GET    | /api/v1/orders/customer/{customerId}?status= | customerId   |    status       |               |
+| Obtener Pedidos por Rango de Fechas        | GET    | /api/v1/orders/date-range                    |          | startDate, endDate |               |
+| Crear Pedido                               | POST   | /api/v1/orders                               |          |               | Objeto Pedido |
+| Actualizar Pedido por ID                   | PUT    | /api/v1/orders/{id}                          | id       |               | Objeto Pedido |
+| Eliminar Pedido por ID                     | DELETE | /api/v1/orders/{id}                          | id       |               |               |
+
+
+## DetalleEnvioController
+
+```js
+//Objeto DetalleEnvio
+{
+    "direccion": "Santa Marta casa 2",
+    "transportadora": "Colombia Express",
+    "numeroGuia": 1213131,
+    "pedido": {
+    "id": "dd69229f-9159-465a-8440-7ff6ce849d24"
+}
+}
+
+```
+
+| Endpoint                                   | Método | Path                                   | Variable | Request Param | Request Body        |
+|--------------------------------------------|--------|----------------------------------------|----------|---------------|---------------------|
+| Obtener Detalle de Envío por ID           | GET    | /api/v1/shipping/{id}                 | id       |               |                     |
+| Obtener todos los Detalles de Envío       | GET    | /api/v1/shipping                      |          |               |                     |
+| Obtener Detalles de Envío por ID de Pedido| GET    | /api/v1/shipping/order/{orderId}      | orderId  |               |                     |
+| Obtener Detalles de Envío por Transportista| GET   | /api/v1/shipping/carrier             |          | name          |                     |
+| Crear Detalle de Envío                    | POST   | /api/v1/shipping                      |          |               | Objeto DetalleEnvio |
+| Actualizar Detalle de Envío por ID        | PUT    | /api/v1/shipping/{id}                 | id       |               | Objeto DetalleEnvio |
+| Eliminar Detalle de Envío por ID          | DELETE | /api/v1/shipping/{id}                 | id       |               |                     |
+
