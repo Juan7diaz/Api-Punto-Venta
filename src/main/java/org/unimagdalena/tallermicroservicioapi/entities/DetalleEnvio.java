@@ -26,7 +26,7 @@ public class DetalleEnvio {
     @Column
     private Integer numeroGuia;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pedido_id", referencedColumnName = "id")
     private Pedido pedido;
 

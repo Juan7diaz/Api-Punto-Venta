@@ -79,7 +79,7 @@ class DetalleEnvioRepositoryTest extends AbstractIntegrationDBTest {
 
     @Test
     void findByTransportadora() {
-        List<DetalleEnvio> datallesMatchTransportadora = detalleEnvioRepository.findByTransportadora("servientrega");
+        List<DetalleEnvio> datallesMatchTransportadora = detalleEnvioRepository.findByTransportadoraContainingIgnoreCase("servientrega");
         assertThat(datallesMatchTransportadora.size()).isEqualTo(2);
         assertThat(datallesMatchTransportadora.get(1).getTransportadora()).isEqualTo("servientrega");
     }
