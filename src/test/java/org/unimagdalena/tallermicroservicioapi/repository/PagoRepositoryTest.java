@@ -82,11 +82,11 @@ public class PagoRepositoryTest extends AbstractIntegrationDBTest {
         MetodoPago metodopago = MetodoPago.fromString("EFECTIVO");
         UUID id_pedido1 = pedidoGenerico1.getId();
 
-        List<Pago> pagosMatch = pagoRepository.findByPedidoIdAndMetodoPago(id_pedido1, metodopago);
+        Optional<Pago> pagosMatch = pagoRepository.findByPedidoIdAndMetodoPago(id_pedido1, metodopago);
 
-        assertThat(pagosMatch.size()).isEqualTo(1);
-        assertThat(pagosMatch.get(0).getPedido().getId()).isEqualTo(id_pedido1);
-        assertThat(pagosMatch.get(0).getMetodoPago()).isEqualTo(metodopago);
+        assertThat(pagosMatch).isPresent();
+        assertThat(pagosMatch.get().getPedido().getId()).isEqualTo(id_pedido1);
+        assertThat(pagosMatch.get().getMetodoPago()).isEqualTo(metodopago);
 
     }
 

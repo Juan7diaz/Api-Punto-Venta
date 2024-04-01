@@ -15,6 +15,6 @@ public interface PagoRepository  extends JpaRepository<Pago, UUID> {
     List<Pago> findByFechaPagoBetween(LocalDateTime startDate, LocalDateTime endDate);
 
     //Recuperar pagos por un identificador de una orden y método de pago
-    List<Pago> findByPedidoIdAndMetodoPago(UUID PedidoId, MetodoPago metodoPago);
+    Optional<Pago> findByPedidoIdAndMetodoPago(UUID PedidoId, MetodoPago metodoPago);
 
 }

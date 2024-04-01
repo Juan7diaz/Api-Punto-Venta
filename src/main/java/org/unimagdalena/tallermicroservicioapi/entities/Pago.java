@@ -31,7 +31,7 @@ public class Pago {
     @Enumerated(EnumType.STRING)
     private MetodoPago metodoPago;
 
-    @OneToOne
+    @OneToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "pedido_id", referencedColumnName = "id")
     private Pedido pedido;
 

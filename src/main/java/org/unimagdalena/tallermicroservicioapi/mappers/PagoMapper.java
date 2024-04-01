@@ -4,18 +4,22 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToSaveDto;
+import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Pago;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PagoMapper {
 
     Pago pagoDtoToPagoEntity(PagoDto pagoDto);
 
     PagoDto pagoEntityToPagoDto(Pago pago);
 
-    @Mapping(target = "id", ignore = true)
     Pago pagoToSaveDtoToPagoEntity(PagoToSaveDto pagoToSaveDto);
 
     PagoToSaveDto pagoEntityToPagoToSaveDto(Pago pago);
+
+    Pago pagoToShowDtoToPagoEntity(PagoToShowDto pagoToShowDto);
+
+    PagoToShowDto pagoEntityToPagoToShowDto(Pago pago);
 
 }
