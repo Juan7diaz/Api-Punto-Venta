@@ -1,6 +1,13 @@
 # Proyecto de Venta de Productos en Línea
 
-Este proyecto implementa una solución de Backend para una problemática típica de venta de productos en línea, siguiendo los requerimientos y especificaciones descritos en el documento `Ejercicio.DesarrolloAPI.pdf`.
+Este proyecto, desarrollado por Juan Díaz Guerrero (Cód. 2020114035), se enfoca en la implementación de una solución de Backend para abordar una problemática común en la venta de productos en línea. El proyecto se desarrolla en el marco de la asignatura de microservicios.
+
+El objetivo principal es cumplir con los requerimientos y especificaciones detallados en el documento `Ejercicio.DesarrolloAPI.pdf`.
+
+La documentación completa del proyecto, incluidos los endpoints y las solicitudes API, se encuentra disponible en el siguiente enlace de Postman:
+[Documentación de Postman](https://documenter.getpostman.com/view/15834105/2sA35G3hSp#50dd6757-03c7-42a0-8fd6-1d5cb9155b58) 🚀
+
+
 
 ## Descripción
 
@@ -148,3 +155,54 @@ Puedes consultar como usar la api con la documentación de postman 👉 [Aqui](h
 | Actualizar Detalle de Envío por ID        | PUT    | /api/v1/shipping/{id}                 | id       |               | Objeto DetalleEnvio |
 | Eliminar Detalle de Envío por ID          | DELETE | /api/v1/shipping/{id}                 | id       |               |                     |
 
+
+## PagoController
+
+```js
+//Objeto Pago
+{
+    "monto": 1000,
+    "fechaPago": "2023-05-15T10:30:00",
+    "metodoPago": "PAYPAL",
+    "pedido": {
+    "id": "dd69229f-9159-465a-8440-7ff6ce849d24"
+    }
+}
+```
+
+| Endpoint                                     | Método | Path                                         | Variable | Request Param | Request Body    |
+|----------------------------------------------|--------|----------------------------------------------|----------|---------------|-----------------|
+| Obtener Pago por ID                          | GET    | /api/v1/payments/{id}                        | id       |               |                 |
+| Obtener todos los Pagos                      | GET    | /api/v1/payments                             |          |               |                 |
+| Obtener Pagos por pedido Id y metodo de pago | GET    | /api/v1/payments/order/{orderId}?metodopago= | orderId  |      metodopago         |                 |
+| Obtener Pagos por Rango de Fechas            | GET    | /api/v1/payments/date-range                  |          | startDate, endDate |              |
+| Crear Pago                                   | POST   | /api/v1/payments                             |          |               | Objeto Payment  |
+| Actualizar Pago por ID                       | PUT    | /api/v1/payments/{id}                        | id       |               | Objeto Payment  |
+| Eliminar Pago por ID                         | DELETE | /api/v1/payments/{id}                        | id       |               |                 |
+
+
+## ItemPedidoController
+
+```js
+//Objeto ItemPedido
+{
+    "cantidad": 2,
+    "precio": 1000,
+    "producto": {
+    "id": "dd69229f-9159-465a-8440-7ff6ce849d24"
+    },
+    "pedido": {
+        "id": "dd69229f-9159-465a-8440-7ff6ce849d24"
+    }
+}
+```
+
+| Endpoint                                      | Método | Path                                     | Variable | Request Param | Request Body       |
+|-----------------------------------------------|--------|------------------------------------------|----------|---------------|--------------------|
+| Obtener Item de Pedido por ID                | GET    | /api/v1/order-items/{id}                | id       |               |                    |
+| Obtener todos los Items de Pedido            | GET    | /api/v1/order-items                     |          |               |                    |
+| Obtener Items de Pedido por ID de Pedido     | GET    | /api/v1/order-items/order/{orderId}     | orderId  |               |                    |
+| Obtener Items de Pedido por ID de Producto   | GET    | /api/v1/order-items/product/{productId}| productId|               |                    |
+| Crear Item de Pedido                         | POST   | /api/v1/order-items                     |          |               | Objeto ItemPedido  |
+| Actualizar Item de Pedido por ID             | PUT    | /api/v1/order-items/{id}                | id       |               | Objeto ItemPedido  |
+| Eliminar Item de Pedido por ID               | DELETE | /api/v1/order-items/{id}                | id       |               |                    |

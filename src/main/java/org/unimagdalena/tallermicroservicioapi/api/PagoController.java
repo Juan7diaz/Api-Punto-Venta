@@ -47,7 +47,7 @@ public class PagoController {
     }
 
     @GetMapping("/order/{orderId}")
-    public ResponseEntity<PagoToShowDto> getPagoByOrderId(@PathVariable UUID orderId, @RequestParam("status") MetodoPago status){
+    public ResponseEntity<PagoToShowDto> getPagoByOrderId(@PathVariable UUID orderId, @RequestParam("metodopago") MetodoPago status){
         try {
             PagoToShowDto res = pagoServices.findPagoByPedidoIdAndMetodoPago(orderId, status);
             return ResponseEntity.ok().body(res);
