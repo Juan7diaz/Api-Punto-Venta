@@ -70,27 +70,24 @@ public class ItemPedidoServicesImpl implements  ItemPedidoServices{
 
     @Override
     public ItemPedidoToShowDto saveItemPedido(ItemPedidoToSaveDto itemPedidoToSaveDto) {
-
         ItemPedido itemPedido = itemPedidoMapper.itemPedidoToSaveDtoToItemPedidoEntity(itemPedidoToSaveDto);
 
         UUID pedidoId = itemPedidoToSaveDto.pedido().id();
-        Optional<Pedido> pedido = pedidoRepository.findById(pedidoId);
-        if(pedido.isEmpty()){
-            throw new NotFoundException("Pedido con ID " + pedidoId + " no encontrado");
-        }
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new NotFoundException("Pedido con ID " + pedidoId + " no encontrado"));
 
         UUID productId = itemPedidoToSaveDto.product().id();
-        Optional<Product> product = productRepository.findById(productId);
-        if(product.isEmpty()){
-            throw new NotFoundException("Producto con ID " + productId + " no encontrado");
-        }
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new NotFoundException("Producto con ID " + productId + " no encontrado"));
+
+        itemPedido.setPedido(pedido);
+        itemPedido.setProduct(product);
 
         ItemPedido itemPedidoGuardado = itemPedidoRepository.save(itemPedido);
-        itemPedidoGuardado.setPedido(pedido.get());
-        itemPedidoGuardado.setProduct(product.get());
 
         return itemPedidoMapper.itemPedidoEntityToItemPedidoToShowDto(itemPedidoGuardado);
     }
+
 
     @Override
     public ItemPedidoToShowDto updateItemPedido(UUID itemPedidoId, ItemPedidoToSaveDto itemPedidoToSaveDto) {
