@@ -114,10 +114,7 @@ class PedidoRepositoryTest extends AbstractIntegrationDBTest {
     @Test
     @DisplayName("[findByClienteIdWithItemsFetch]")
     void test_findByClienteIdWithItemsFetch() {
-//        TODO: Terminar el test
-//        UUID cliente_id = clienteGlobal1.getId();
-//        List<Pedido> pedidosConSusArticulos = pedidoRepository.findByClienteIdWithItemsFetch(cliente_id);
-//        assertThat(pedidosConSusArticulos.size()).isEqualTo(3);
+        //TODO: Terminar el test
     }
 
     @Test
