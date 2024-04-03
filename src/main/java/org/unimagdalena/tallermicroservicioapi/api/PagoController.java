@@ -1,6 +1,5 @@
 package org.unimagdalena.tallermicroservicioapi.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +54,6 @@ public class PagoController {
             return ResponseEntity.notFound().build();
         }
     }
-
     @GetMapping("/date-range")
     public ResponseEntity<List<PagoToShowDto>> getPagosByDateRange(@RequestParam("startDate") LocalDateTime startDate, @RequestParam("endDate") LocalDateTime endDate){
         try {

@@ -11,5 +11,4 @@ public record PagoToSaveDto(
         LocalDateTime fechaPago,
         MetodoPago metodoPago,
         PedidoToShowDto pedido
-) {
-}
+) { }

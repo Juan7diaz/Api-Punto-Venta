@@ -1,6 +1,5 @@
 package org.unimagdalena.tallermicroservicioapi.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,6 @@ public class ItemPedidoController {
     public ItemPedidoController(ItemPedidoServices itemPedidoServices){
         this.itemPedidoServices = itemPedidoServices;
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<ItemPedidoToShowDto> getItemPedidoById(@PathVariable UUID id){
@@ -93,6 +91,5 @@ public class ItemPedidoController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
 }

@@ -5,4 +5,4 @@ public record ProductToSaveDto(
         String nombre,
         Float price,
         Integer stock
-) {}
+) { }

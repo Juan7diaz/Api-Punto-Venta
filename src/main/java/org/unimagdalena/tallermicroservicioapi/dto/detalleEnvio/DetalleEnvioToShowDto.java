@@ -1,6 +1,5 @@
 package org.unimagdalena.tallermicroservicioapi.dto.detalleEnvio;
 
-import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToShowDto;
 
 import java.util.UUID;
@@ -11,4 +10,4 @@ public record DetalleEnvioToShowDto (
     String transportadora,
     Integer numeroGuia,
     PedidoToShowDto pedido
-) {}
+) { }

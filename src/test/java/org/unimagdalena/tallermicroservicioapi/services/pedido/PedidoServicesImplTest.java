@@ -249,4 +249,5 @@ class PedidoServicesImplTest {
         assertThat(pedidosFinded.get(0).id()).isEqualTo(pedido.getId());
         assertThat(pedidosFinded.get(1).id()).isEqualTo(pedido2.getId());
     }
+
 }

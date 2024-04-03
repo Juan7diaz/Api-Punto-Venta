@@ -5,7 +5,6 @@ import lombok.*;
 import org.unimagdalena.tallermicroservicioapi.utils.MetodoPago;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @NoArgsConstructor

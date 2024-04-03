@@ -18,7 +18,6 @@ import java.util.UUID;
 
 class PedidoRepositoryTest extends AbstractIntegrationDBTest {
 
-
     PedidoRepository pedidoRepository;
     ClienteRepository clienteRepository;
     ItemPedidoRepository itemPedidoRepository;

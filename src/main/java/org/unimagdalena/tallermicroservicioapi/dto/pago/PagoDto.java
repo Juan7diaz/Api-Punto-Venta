@@ -12,4 +12,4 @@ public record PagoDto(
         LocalDateTime fechaPago,
         MetodoPago metodoPago,
         PedidoDto pedido
-) {}
+) { }

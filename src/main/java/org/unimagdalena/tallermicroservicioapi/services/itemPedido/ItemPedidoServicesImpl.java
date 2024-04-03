@@ -88,7 +88,6 @@ public class ItemPedidoServicesImpl implements  ItemPedidoServices{
         return itemPedidoMapper.itemPedidoEntityToItemPedidoToShowDto(itemPedidoGuardado);
     }
 
-
     @Override
     public ItemPedidoToShowDto updateItemPedido(UUID itemPedidoId, ItemPedidoToSaveDto itemPedidoToSaveDto) {
 
@@ -101,8 +100,6 @@ public class ItemPedidoServicesImpl implements  ItemPedidoServices{
 
         if (itemPedidoToSaveDto.cantidad() != null) itemPedido.setCantidad(itemPedidoToSaveDto.cantidad());
         if (itemPedidoToSaveDto.precioUnitario() != null) itemPedido.setPrecioUnitario(itemPedidoToSaveDto.precioUnitario());
-
-
 
         if(itemPedidoToSaveDto.pedido() != null && itemPedidoToSaveDto.pedido().id() != null){
             UUID pedidoId = itemPedidoToSaveDto.pedido().id();
@@ -168,4 +165,5 @@ public class ItemPedidoServicesImpl implements  ItemPedidoServices{
         itemPedidoRepository.deleteById(id);
 
     }
+
 }

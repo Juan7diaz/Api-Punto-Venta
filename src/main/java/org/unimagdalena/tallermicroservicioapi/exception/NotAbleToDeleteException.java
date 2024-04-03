@@ -2,8 +2,7 @@ package org.unimagdalena.tallermicroservicioapi.exception;
 
 public class NotAbleToDeleteException extends RuntimeException {
 
-    public NotAbleToDeleteException() {
-    }
+    public NotAbleToDeleteException() { }
 
     public NotAbleToDeleteException(String message) {
         super(message);

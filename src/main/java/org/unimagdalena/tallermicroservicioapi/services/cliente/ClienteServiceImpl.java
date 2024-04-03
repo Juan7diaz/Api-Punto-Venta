@@ -2,7 +2,6 @@ package org.unimagdalena.tallermicroservicioapi.services.cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
@@ -136,4 +135,5 @@ public class ClienteServiceImpl implements ClienteServices {
 
         return clienteARegresar;
     }
+
 }

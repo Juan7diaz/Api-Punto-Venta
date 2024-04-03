@@ -1,7 +1,5 @@
 package org.unimagdalena.tallermicroservicioapi.services.product;
 
-import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToSaveDto;
-import org.unimagdalena.tallermicroservicioapi.dto.product.ProductDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToShowDto;
 

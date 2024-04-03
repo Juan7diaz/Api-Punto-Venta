@@ -2,7 +2,6 @@ package org.unimagdalena.tallermicroservicioapi.services.itemPedido;
 
 import org.unimagdalena.tallermicroservicioapi.dto.itemPedido.ItemPedidoToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.itemPedido.ItemPedidoToShowDto;
-import org.unimagdalena.tallermicroservicioapi.entities.ItemPedido;
 
 import java.util.List;
 import java.util.UUID;

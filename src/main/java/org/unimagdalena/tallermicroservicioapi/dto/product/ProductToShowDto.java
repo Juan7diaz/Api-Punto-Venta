@@ -10,5 +10,4 @@ public record ProductToShowDto(
         String nombre,
         Float price,
         Integer stock
-) {
-}
+) { }

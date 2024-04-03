@@ -4,4 +4,4 @@ public record ClienteToSaveDto(
         String nombre,
         String email,
         String direccion
-) {}
+) { }

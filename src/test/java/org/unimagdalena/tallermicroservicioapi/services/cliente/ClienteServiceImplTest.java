@@ -199,4 +199,5 @@ class ClienteServiceImplTest {
         assertThat(clientesEncontrados.get(0).id()).isEqualTo(cliente.getId());
         assertThat(clientesEncontrados.get(1).id()).isEqualTo(cliente2.getId());
     }
+
 }

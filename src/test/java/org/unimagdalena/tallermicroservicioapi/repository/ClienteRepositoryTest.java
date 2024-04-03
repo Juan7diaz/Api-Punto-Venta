@@ -1,6 +1,5 @@
 package org.unimagdalena.tallermicroservicioapi.repository;
 
-import ch.qos.logback.core.net.server.Client;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -130,8 +129,5 @@ public class ClienteRepositoryTest extends  AbstractIntegrationDBTest{
         List<Cliente> listaTodoCliente= clienteRepository.findAll();
         assertThat(listaTodoCliente.size()).isEqualTo(3);
     }
-
-
-
 
 }

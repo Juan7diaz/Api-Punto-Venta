@@ -1,7 +1,6 @@
 package org.unimagdalena.tallermicroservicioapi.services.product;
 
 import org.springframework.stereotype.Service;
-import org.unimagdalena.tallermicroservicioapi.dto.product.ProductDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Product;
@@ -121,4 +120,5 @@ public class ProductServicesImpl implements ProductServices{
 
         productRepository.deleteById(id);
     }
+
 }

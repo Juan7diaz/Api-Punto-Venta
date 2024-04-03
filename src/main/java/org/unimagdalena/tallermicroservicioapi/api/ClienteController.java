@@ -3,7 +3,6 @@ package org.unimagdalena.tallermicroservicioapi.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;

@@ -17,5 +17,4 @@ public record ClienteDto(
     public List<PedidoDto> pedidos(){
         return Collections.unmodifiableList(pedidos);
     }
-
 }

@@ -12,14 +12,10 @@ import org.unimagdalena.tallermicroservicioapi.dto.detalleEnvio.DetalleEnvioToSh
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToShowDto;
 import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 import org.unimagdalena.tallermicroservicioapi.entities.DetalleEnvio;
-import org.unimagdalena.tallermicroservicioapi.entities.Pago;
 import org.unimagdalena.tallermicroservicioapi.entities.Pedido;
 import org.unimagdalena.tallermicroservicioapi.mappers.DetalleEnvioMapper;
-import org.unimagdalena.tallermicroservicioapi.mappers.PagoMapper;
 import org.unimagdalena.tallermicroservicioapi.repository.DetalleEnvioRepository;
-import org.unimagdalena.tallermicroservicioapi.repository.PagoRepository;
 import org.unimagdalena.tallermicroservicioapi.repository.PedidoRepository;
-import org.unimagdalena.tallermicroservicioapi.services.pago.PagoServicesImpl;
 import org.unimagdalena.tallermicroservicioapi.utils.EstadoPedido;
 
 import java.time.LocalDateTime;
@@ -269,4 +265,5 @@ class DetalleEnvioServicesImplTest {
         detalleEnvioService.deleteDetalleEnvioById(detalleEnvio.getId());
         verify(detalleEnvioRepository,times(1)).deleteById(any());
     }
+
 }

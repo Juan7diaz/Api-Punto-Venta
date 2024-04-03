@@ -2,15 +2,10 @@ package org.unimagdalena.tallermicroservicioapi.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pedido.PedidoToShowDto;
-import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 import org.unimagdalena.tallermicroservicioapi.entities.Pedido;
-
-import java.util.ArrayList;
 
 @Mapper(componentModel = "spring")
 public interface PedidoMapper {

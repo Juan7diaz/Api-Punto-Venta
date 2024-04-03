@@ -1,7 +1,6 @@
 package org.unimagdalena.tallermicroservicioapi.mappers;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToShowDto;

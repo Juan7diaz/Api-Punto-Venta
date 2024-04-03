@@ -16,7 +16,6 @@ import java.util.UUID;
 
 class DetalleEnvioRepositoryTest extends AbstractIntegrationDBTest {
 
-
     DetalleEnvioRepository detalleEnvioRepository;
     PedidoRepository pedidoRepository;
 
@@ -25,7 +24,6 @@ class DetalleEnvioRepositoryTest extends AbstractIntegrationDBTest {
         this.pedidoRepository = pedidoRepository;
         this.detalleEnvioRepository = detalleEnvioRepository;
     }
-
 
     Pedido pedidoGlobal1;
     Pedido pedidoGlobal2;
@@ -89,7 +87,6 @@ class DetalleEnvioRepositoryTest extends AbstractIntegrationDBTest {
         List<DetalleEnvio> detallesEnvioEnPendiente = detalleEnvioRepository.findByPedido_Status(EstadoPedido.PENDIENTE);
         assertThat(detallesEnvioEnPendiente.size()).isEqualTo(2);
         assertThat(detallesEnvioEnPendiente.get(0).getPedido().getStatus()).isEqualTo(EstadoPedido.PENDIENTE);
-
     }
 
     @Test
@@ -145,6 +142,5 @@ class DetalleEnvioRepositoryTest extends AbstractIntegrationDBTest {
         assertThat(DetalleEnvioActualizado).isPresent();
         assertThat(DetalleEnvioActualizado.get().getDireccion()).isEqualTo("Barranquilla en la estatua de shakira");
     }
-
 
 }

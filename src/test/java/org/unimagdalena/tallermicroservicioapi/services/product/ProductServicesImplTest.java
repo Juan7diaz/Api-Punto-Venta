@@ -22,11 +22,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
 class ProductServicesImplTest {
-
 
     @Mock
     private ProductMapper productMapper;
@@ -200,4 +197,5 @@ class ProductServicesImplTest {
         productService.deleteProductById(product.getId());
         verify(productRepository,times(1)).deleteById(any());
     }
+
 }

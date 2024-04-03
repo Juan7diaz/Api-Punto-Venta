@@ -13,4 +13,4 @@ public record PagoToShowDto (
         LocalDateTime fechaPago,
         MetodoPago metodoPago,
         PedidoToShowDto pedido
-){}
+){ }

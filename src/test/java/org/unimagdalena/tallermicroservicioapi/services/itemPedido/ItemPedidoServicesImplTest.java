@@ -22,7 +22,6 @@ import org.unimagdalena.tallermicroservicioapi.repository.ProductRepository;
 import org.unimagdalena.tallermicroservicioapi.utils.EstadoPedido;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import static org.mockito.BDDMockito.given;
@@ -244,4 +243,5 @@ class ItemPedidoServicesImplTest {
         itemPedidoService.deleteItemPedidoById(itemPedido.getId());
         verify(itemPedidoRepository,times(1)).deleteById(any());
     }
+
 }

@@ -1,12 +1,9 @@
 package org.unimagdalena.tallermicroservicioapi.services.cliente;
 
-import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToShowDto;
-import org.unimagdalena.tallermicroservicioapi.entities.Cliente;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface ClienteServices {

@@ -11,5 +11,4 @@ public record ItemPedidoDto(
         Float precioUnitario,
         PedidoDto pedido,
         ProductDto product
-) {
-}
+) { }

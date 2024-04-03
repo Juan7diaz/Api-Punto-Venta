@@ -133,5 +133,4 @@ public class ProductRepositoryTest extends AbstractIntegrationDBTest {
         assertThat(productoConsultado.get().getStock()).isEqualTo(100);
     }
 
-
 }
