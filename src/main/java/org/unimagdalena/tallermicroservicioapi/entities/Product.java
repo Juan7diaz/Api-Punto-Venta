@@ -27,7 +27,7 @@ public class Product {
     @Column
     private Integer stock;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<ItemPedido> itemsPedidos;
 
 }

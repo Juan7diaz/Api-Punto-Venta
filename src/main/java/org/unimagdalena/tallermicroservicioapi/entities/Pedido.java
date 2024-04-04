@@ -29,17 +29,17 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private EstadoPedido status;
 
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     private Pago pago;
 
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     private DetalleEnvio detalleEnvio;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<ItemPedido> itemsPedido;
 
 }

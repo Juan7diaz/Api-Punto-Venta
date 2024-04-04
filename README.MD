@@ -1,6 +1,12 @@
 # Proyecto de Venta de Productos en Línea
 
-Este proyecto, desarrollado por Juan Díaz Guerrero (Cód. 2020114035), se enfoca en la implementación de una solución de Backend para abordar una problemática común en la venta de productos en línea. El proyecto se desarrolla en el marco de la asignatura de microservicios.
+Este proyecto, desarrollado por:
+
+Juan Díaz Guerrero (Cód. 2020114035)\
+Daniel Cogollos Cerón (Cód. 2020114048)\
+Gian Astori Payares (Cód. 2020114003)
+
+Se enfoca en la implementación de una solución de Backend para abordar una problemática común en la venta de productos en línea. El proyecto se desarrolla en el marco de la asignatura de microservicios.
 
 El objetivo principal es cumplir con los requerimientos y especificaciones detallados en el documento `Ejercicio.DesarrolloAPI.pdf`.
 

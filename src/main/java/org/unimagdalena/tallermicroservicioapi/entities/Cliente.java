@@ -27,7 +27,7 @@ public class Cliente {
     @Column
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Pedido> pedidos;
 
 }
