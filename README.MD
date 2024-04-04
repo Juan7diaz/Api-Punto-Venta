@@ -193,8 +193,8 @@ Puedes consultar como usar la api con la documentación de postman 👉 [Aqui](h
 //Objeto ItemPedido
 {
     "cantidad": 2,
-    "precio": 1000,
-    "producto": {
+    "precioUnitario": 1000,
+    "product": {
     "id": "dd69229f-9159-465a-8440-7ff6ce849d24"
     },
     "pedido": {
