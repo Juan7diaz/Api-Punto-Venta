@@ -167,7 +167,7 @@ Puedes consultar como usar la api con la documentación de postman 👉 [Aqui](h
 ```js
 //Objeto Pago
 {
-    "monto": 1000,
+    "totalPago": 1000,
     "fechaPago": "2023-05-15T10:30:00",
     "metodoPago": "PAYPAL",
     "pedido": {
