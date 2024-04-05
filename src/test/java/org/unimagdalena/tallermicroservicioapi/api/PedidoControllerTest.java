@@ -134,11 +134,7 @@ class PedidoControllerTest {
         PedidoToSaveDto toUpdate = new PedidoToSaveDto(
                 null,
                 EstadoPedido.ENTREGADO,
-                new ClienteToShowDto(
-                        cliente.id(),
-                        null,
-                        null,
-                        null));
+                null);
         PedidoToShowDto pedidoUpdated = new PedidoToShowDto(
                 pedido.id(),
                 pedido.fechaPedido(),
