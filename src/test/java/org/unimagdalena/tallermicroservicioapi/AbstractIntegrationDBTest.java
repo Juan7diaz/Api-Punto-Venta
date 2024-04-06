@@ -14,16 +14,16 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public abstract class AbstractIntegrationDBTest{
 
 // Esta es la configuración que me sirvió para que el contenedor de PostgreSQL se levantara
-//    @ServiceConnection
-//    PostgreSQLContainer<?> postgreSQLContainer(){
-//        return new PostgreSQLContainer<>("postgres:15-alpine");
-//    }
+    @ServiceConnection
+    PostgreSQLContainer<?> postgreSQLContainer(){
+      return new PostgreSQLContainer<>("postgres:15-alpine");
+    }
 
 
     // Esta es la configuración explicada en clase
     // si no funciona, descomentar la configuración anterior y comentar esta
-    @Container
+    /*@Container
     @ServiceConnection
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15-alpine");
-
+    */
 }
