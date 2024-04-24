@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unimagdalena.tallermicroservicioapi.config.CustomMetricsBinder;
 import org.unimagdalena.tallermicroservicioapi.dto.detalleEnvio.DetalleEnvioToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.detalleEnvio.DetalleEnvioToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
@@ -16,10 +17,12 @@ import java.util.UUID;
 public class DetalleEnvioController {
 
     private final DetalleEnvioServices detalleEnvioServices;
+    private final CustomMetricsBinder customMetricsBinder;
 
     @Autowired
-    public DetalleEnvioController(DetalleEnvioServices detalleEnvioServices) {
+    public DetalleEnvioController(DetalleEnvioServices detalleEnvioServices, CustomMetricsBinder customMetricsBinder) {
         this.detalleEnvioServices = detalleEnvioServices;
+        this.customMetricsBinder=customMetricsBinder;
     }
 
     @GetMapping("/{id}")
@@ -35,6 +38,7 @@ public class DetalleEnvioController {
     @GetMapping
     public ResponseEntity<List<DetalleEnvioToShowDto>> getAllDetalleEnvio() {
         try {
+            customMetricsBinder.incrementGetCounter();
             List<DetalleEnvioToShowDto> detallesEnvio = detalleEnvioServices.getAllDetalleEnvio();
             return ResponseEntity.ok().body(detallesEnvio);
         } catch (NotFoundException e) {
