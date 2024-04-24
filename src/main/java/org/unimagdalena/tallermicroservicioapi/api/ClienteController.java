@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ClienteController {
 
     private final ClienteServices clienteServices;
-    private CustomMetricsBinder customMetricsBinder;
+    private final CustomMetricsBinder customMetricsBinder;
 
 
     @Autowired
@@ -36,10 +36,11 @@ public class ClienteController {
         }
     }
 
+    // http://localhost:8080/actuator/metrics/customers.requests
     @GetMapping
     public ResponseEntity<List<ClienteToShowDto>> getAllCliente(){
         try {
-            customMetricsBinder.incrementCustomersCounter();
+            customMetricsBinder.incrementCustomersCounter(); // <-- increment the counter
             List<ClienteToShowDto> res = clienteServices.findAllCliente();
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {
