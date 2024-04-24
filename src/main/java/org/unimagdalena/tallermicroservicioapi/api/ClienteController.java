@@ -40,7 +40,8 @@ public class ClienteController {
     @GetMapping
     public ResponseEntity<List<ClienteToShowDto>> getAllCliente(){
         try {
-            customMetricsBinder.incrementCustomersCounter(); // <-- increment the counter
+            customMetricsBinder.incrementCustomersCounter(); // <-- increments the counter
+            customMetricsBinder.incrementGetCounter();
             List<ClienteToShowDto> res = clienteServices.findAllCliente();
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {

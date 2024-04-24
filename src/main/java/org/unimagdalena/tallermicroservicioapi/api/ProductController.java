@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unimagdalena.tallermicroservicioapi.config.CustomMetricsBinder;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.product.ProductToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
@@ -16,10 +17,12 @@ import java.util.UUID;
 public class ProductController {
 
     private final ProductServices productServices;
+    private final CustomMetricsBinder customMetricsBinder;
 
     @Autowired
-    public ProductController(ProductServices productServices) {
+    public ProductController(ProductServices productServices, CustomMetricsBinder customMetricsBinder) {
         this.productServices = productServices;
+        this.customMetricsBinder=customMetricsBinder;
     }
 
     @GetMapping("/{id}")
@@ -35,6 +38,7 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductToShowDto>> getAllProduct() {
         try{
+            customMetricsBinder.incrementGetCounter();
             List<ProductToShowDto> res = productServices.findAllProducts();
             return ResponseEntity.ok().body(res);
         }catch (NotFoundException e){
