@@ -13,8 +13,6 @@ El objetivo principal es cumplir con los requerimientos y especificaciones detal
 La documentación completa del proyecto, incluidos los endpoints y las solicitudes API, se encuentra disponible en el siguiente enlace de Postman:
 [Documentación de Postman](https://documenter.getpostman.com/view/15834105/2sA35G3hSp#50dd6757-03c7-42a0-8fd6-1d5cb9155b58) 🚀
 
-
-
 ## Descripción
 
 El sistema consta de las siguientes entidades:
@@ -26,9 +24,6 @@ El sistema consta de las siguientes entidades:
 - **Pago**: Representa los datos de pago de un pedido.
 - **DetalleEnvio**: Representa la información de envío de un pedido.
 
-## Diagrama relacional
-[![Whats-App-Image-2024-03-26-at-00-33-29.jpg](https://i.postimg.cc/W37CgbkT/Whats-App-Image-2024-03-26-at-00-33-29.jpg)](https://postimg.cc/Q9HfrDmy)
-
 ## Tecnologías utilizadas
 
 - Spring Boot
@@ -39,6 +34,10 @@ El sistema consta de las siguientes entidades:
 - JUnit
 - Mockito
 - Testcontainers
+- Zipkin
+
+## Diagrama relacional
+[![Whats-App-Image-2024-03-26-at-00-33-29.jpg](https://i.postimg.cc/W37CgbkT/Whats-App-Image-2024-03-26-at-00-33-29.jpg)](https://postimg.cc/Q9HfrDmy)
 
 ## Funcionalidades
 
