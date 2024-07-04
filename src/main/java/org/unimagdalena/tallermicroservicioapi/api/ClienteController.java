@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unimagdalena.tallermicroservicioapi.config.CustomMetricsBinder;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.cliente.ClienteToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
@@ -16,10 +17,13 @@ import java.util.UUID;
 public class ClienteController {
 
     private final ClienteServices clienteServices;
+    private final CustomMetricsBinder customMetricsBinder;
+
 
     @Autowired
-    public ClienteController(ClienteServices clienteServices){
-       this.clienteServices = clienteServices;
+    public ClienteController(ClienteServices clienteServices, CustomMetricsBinder customMetricsBinder){
+        this.customMetricsBinder =customMetricsBinder;
+        this.clienteServices = clienteServices;
     }
 
     @GetMapping("/{id}")
@@ -32,9 +36,12 @@ public class ClienteController {
         }
     }
 
+    // http://localhost:8080/actuator/metrics/customers.requests
     @GetMapping
     public ResponseEntity<List<ClienteToShowDto>> getAllCliente(){
         try {
+            customMetricsBinder.incrementCustomersCounter(); // <-- increments the counter
+            customMetricsBinder.incrementGetCounter();
             List<ClienteToShowDto> res = clienteServices.findAllCliente();
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {

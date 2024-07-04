@@ -3,6 +3,7 @@ package org.unimagdalena.tallermicroservicioapi.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.unimagdalena.tallermicroservicioapi.config.CustomMetricsBinder;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToSaveDto;
 import org.unimagdalena.tallermicroservicioapi.dto.pago.PagoToShowDto;
 import org.unimagdalena.tallermicroservicioapi.exception.NotFoundException;
@@ -19,10 +20,12 @@ import java.util.UUID;
 public class PagoController {
 
     PagoServices pagoServices;
+    private final CustomMetricsBinder customMetricsBinder;
 
     @Autowired
-    public PagoController(PagoServices pagoServices){
+    public PagoController(PagoServices pagoServices, CustomMetricsBinder customMetricsBinder){
         this.pagoServices = pagoServices;
+        this.customMetricsBinder=customMetricsBinder;
     }
 
     @GetMapping("/{id}")
@@ -38,6 +41,7 @@ public class PagoController {
     @GetMapping
     public ResponseEntity<List<PagoToShowDto>> getAllPago(){
         try {
+            customMetricsBinder.incrementGetCounter();
             List<PagoToShowDto> res = pagoServices.findAllPago();
             return ResponseEntity.ok().body(res);
         } catch (NotFoundException e) {
